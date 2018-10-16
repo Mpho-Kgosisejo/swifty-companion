@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class APIController: Any {
     public static var TOKEN: String = ""
@@ -30,40 +31,34 @@ class APIController: Any {
         let url: URL = URL(string: "\(API.EndPoint)/v2/users/\(user)?access_token=\(APIController.TOKEN)")!
         let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
         
-//        print("url: ", url)
-        request.httpMethod = "POST"
-        let task = URLSession.shared.dataTask(with: request as URLRequest){
-            (data, response, error) in
-            if let err = error{
-                DispatchQueue.main.async {
-                    errorCallBack(err)
-                }
-            }
-            else if let d = data{
-                DispatchQueue.main.async {
-                    // print("Response: ", response ?? "no-response")
-                    successCallBack(d)
-                }
-            }
-        }
-        task.resume()
+        request.httpMethod = "GET"
+        
+        self.request(req: request, with: successCallBack, with: errorCallBack)
     }
     
     func connect(with successCallBack: @escaping (Data) -> (), with errorCallBack: @escaping (Error) -> ()) {
-        let task = URLSession.shared.dataTask(with: self.getCodeRequest() as URLRequest){
+        self.request(req: self.getCodeRequest(), with: successCallBack, with: errorCallBack)
+    }
+    
+    private func request(req: NSMutableURLRequest, with successCallBack: @escaping (Data) -> (Void), with errorCallBack: @escaping (Error) -> (Void)){
+        let task = URLSession.shared.dataTask(with: req as URLRequest){
             (data, response, error) in
             if let err = error{
                 DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     errorCallBack(err)
                 }
             }
             else if let d = data{
                 DispatchQueue.main.async {
                     // print("Response: ", response ?? "no-response")
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     successCallBack(d)
                 }
             }
         }
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         task.resume()
     }
     

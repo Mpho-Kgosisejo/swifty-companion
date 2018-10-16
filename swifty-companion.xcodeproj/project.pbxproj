@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7851D542175CBA7000B9D4B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7851D532175CBA7000B9D4B /* User.swift */; };
+		C7851D562175E28F000B9D4B /* ProfileContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7851D552175E28F000B9D4B /* ProfileContainerViewController.swift */; };
 		C7B87BA62174B4E70005E719 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B87BA52174B4E70005E719 /* AppDelegate.swift */; };
 		C7B87BA82174B4E70005E719 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B87BA72174B4E70005E719 /* ViewController.swift */; };
 		C7B87BAB2174B4E70005E719 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7B87BA92174B4E70005E719 /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C7851D532175CBA7000B9D4B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C7851D552175E28F000B9D4B /* ProfileContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainerViewController.swift; sourceTree = "<group>"; };
 		C7B87BA22174B4E70005E719 /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7B87BA52174B4E70005E719 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7B87BA72174B4E70005E719 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C7851D522175CB17000B9D4B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C7851D532175CBA7000B9D4B /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C7B87B992174B4E70005E719 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +72,7 @@
 		C7B87BA42174B4E70005E719 /* swifty-companion */ = {
 			isa = PBXGroup;
 			children = (
+				C7851D522175CB17000B9D4B /* Models */,
 				C7B87BBC2174C63F0005E719 /* api */,
 				C7B87BBB2174C6270005E719 /* ViewControllers */,
 				C7B87BA52174B4E70005E719 /* AppDelegate.swift */,
@@ -76,6 +89,7 @@
 			children = (
 				C7B87BB92174BB2D0005E719 /* DetailScreenViewController.swift */,
 				C7B87BA72174B4E70005E719 /* ViewController.swift */,
+				C7851D552175E28F000B9D4B /* ProfileContainerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -160,8 +174,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7851D562175E28F000B9D4B /* ProfileContainerViewController.swift in Sources */,
 				C7B87BBE2174C6570005E719 /* APIController.swift in Sources */,
 				C7B87BC02174C73D0005E719 /* API.swift in Sources */,
+				C7851D542175CBA7000B9D4B /* User.swift in Sources */,
 				C7B87BBA2174BB2D0005E719 /* DetailScreenViewController.swift in Sources */,
 				C7B87BA82174B4E70005E719 /* ViewController.swift in Sources */,
 				C7B87BA62174B4E70005E719 /* AppDelegate.swift in Sources */,

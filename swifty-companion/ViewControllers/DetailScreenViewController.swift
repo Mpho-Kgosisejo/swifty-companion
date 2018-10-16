@@ -9,11 +9,24 @@
 import UIKit
 
 class DetailScreenViewController: UIViewController {
+    public var _userData: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.title = "\(self._userData.login!)'s Profile"
+        
+        if let profileContainer: ProfileContainerViewController = self.childViewControllers.last as? ProfileContainerViewController{
+            profileContainer.setFullName(name: self._userData.displayname!)
+            profileContainer.setEmail(email: self._userData.email!)
+            profileContainer.setWallet(wallet: String(self._userData.wallet!))
+            profileContainer.setCorrectionPoints(points: String(self._userData.correction_point!))
+            profileContainer.setImage(imageUrl: self._userData.image_url!)
+            if let cu = self._userData.cursus_users?.first {
+                profileContainer.setLevel(level: String(format: "%.2f", cu.level!))
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +34,9 @@ class DetailScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        print("DetailScreenViewController.prepare(...)")
     }
-    */
 
+    
 }

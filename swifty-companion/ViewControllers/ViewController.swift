@@ -28,17 +28,17 @@ class ViewController: UIViewController {
     }
 
     @IBAction func btnSearch(_ sender: UIButton) {
-        /* // goto: DetailScreenViewController()
-        if let DetailScreen: DetailScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailScreen") as? DetailScreenViewController {
-            self.navigationController?.pushViewController(DetailScreen, animated: true)
-        }
-        */
         let user = self._txtSearch.text!
         
         if user.count > 0 {
             api.searchUser(user: user, with: {data in
                 let dic: NSDictionary = APIController.getDictionary(data: data)
-                print("Ok: ", dic)
+
+                if dic.count > 0 {
+                    self.processUserData(data: data)
+                } else {
+                    print("Search error: no username such as \"\(user)\"")
+                }
             }, with: {error in
                 print("Error")
             })
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
             
             if let token: String = dic.value(forKey: "access_token") as? String {
                 APIController.TOKEN = token
-                print("TOKEN SET")
+                print("[TOKEN SET] => \(APIController.TOKEN)")
             }else{
                 print("Error getting token (\(self.getTokenCount)/\(APIController.TRY_GET_TOKEN))")
                 if self.getTokenCount < APIController.TRY_GET_TOKEN {
@@ -68,8 +68,29 @@ class ViewController: UIViewController {
         })
     }
     
+    private func processUserData(data: Data){
+        do {
+            let json: String = String(bytes: data, encoding: .utf8) ?? "{}"
+            let jsonData = json.data(using: .utf8)!
+            
+//            print("\n\nJSON: ", json, "\n\n")
+            let userData: User = try JSONDecoder().decode(User.self, from: jsonData)
+            
+            if let detailScreen: DetailScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailScreen") as? DetailScreenViewController {
+                self.navigationController?.pushViewController(detailScreen, animated: true)
+                
+                detailScreen._userData = userData
+                return
+            }
+            
+            print("[processUserData()] Something went wrong!")
+        }catch (let error){
+            print("Error processUserData(): \(error.localizedDescription)")
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare(...)")
+        print("ViewController.prepare(...)")
     }
 }
 
