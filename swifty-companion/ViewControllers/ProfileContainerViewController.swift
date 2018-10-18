@@ -28,7 +28,7 @@ class ProfileContainerViewController: UIViewController {
         self._imageView.layer.cornerRadius = (self._imageView.frame.height / 2)
         self._imageView.clipsToBounds = true
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "landscape-42")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "landscape-42-min")!)
     }
 
     override func didReceiveMemoryWarning() {

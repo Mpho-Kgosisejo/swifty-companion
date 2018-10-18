@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         print("Running...\n")
         self.title = "42"
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "port-42")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "port-42-min")!)
         
         self._api = APIController()
         self._alert = Alert(vc: self)
