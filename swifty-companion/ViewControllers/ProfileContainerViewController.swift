@@ -16,16 +16,34 @@ class ProfileContainerViewController: UIViewController {
     @IBOutlet weak var _level: UILabel!
     @IBOutlet weak var _progressBar: UIProgressView!
     @IBOutlet weak var _imageView: UIImageView!
+    @IBOutlet weak var _role: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let color: UIColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        self._imageView.layer.borderWidth = 2
+        self._imageView.layer.masksToBounds = false
+        self._imageView.layer.borderColor = color.cgColor
+        self._imageView.layer.cornerRadius = (self._imageView.frame.height / 2)
+        self._imageView.clipsToBounds = true
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "landscape-42")!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setRole(isStaff: Bool) {
+        if isStaff {
+            self._role.backgroundColor = Colors42.LightRed
+            self._role.text = "Staff"
+        } else {
+            self._role.backgroundColor = Colors42.LightGreen
+            self._role.text = "Student"
+        }
     }
     
     func setFullName(name: String) {
@@ -52,25 +70,24 @@ class ProfileContainerViewController: UIViewController {
     }
     
     func setImage(imageUrl: URL) {
-        let image: UIImage? = nil
-        var data: Data? = nil
+        let url = URL(string: "https://cdn.intra.42.fr/users/medium_\(imageUrl.lastPathComponent)")
+        let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
         
-        print("image: ", imageUrl)
-        let imageUrl2 = URL(string: "https://cdn.intra.42.fr/users/mkgosise.png")
-        DispatchQueue.global(qos: .background).async{
-            do {
-                data = try Data(contentsOf: imageUrl2!)
-                
-                if data != nil {
-                    DispatchQueue.main.async {
-                        self._imageView.image = UIImage(data: data!)
-                    }
-                }
-            } catch let error {
-                print("Error setting image... \(error.localizedDescription)")
-            }
-        }
-        self._imageView.image = image
+        activityIndicator.center = self._imageView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        self._imageView.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
+        APIController.processImage(url: url!, with: {
+            image in
+            activityIndicator.stopAnimating()
+            self._imageView.image = image
+        }, with: {
+            errorStr in
+            activityIndicator.stopAnimating()
+            print("[setImage()] => \(errorStr)")
+        })
     }
     
     private func setProgressBar(progress: Float){

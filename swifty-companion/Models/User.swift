@@ -26,6 +26,7 @@ struct User: Decodable {
     let wallet: Int?
     
     let cursus_users: [CursusUsers]?
+    let projects_users: [ProjectsUsers]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -44,12 +45,51 @@ struct User: Decodable {
         case location
         case wallet
         case cursus_users
+        case projects_users
     }
 }
 
 struct CursusUsers: Decodable {
     let grade: String?
     let level: Double?
+    let skills: [Skills]?
+}
+
+struct Skills: Decodable {
+    let id: Int?
+    let name: String?
+    let level: Double?
+}
+
+struct ProjectsUsers: Decodable {
+    let id: Int?
+    let occurrence: Int?
+    let final_mark: Int?
+    let status: String?
+    let validated: Bool?
+    let current_team_id: Int?
+    let project: Project
+//    let marked_at: Date?
+    let marked: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case occurrence
+        case final_mark
+        case status
+        case validated = "validated?"
+        case current_team_id
+        case project
+        //    case marked_at: Date?
+        case marked
+    }
+}
+
+struct Project: Decodable {
+    let id: Int?
+    let name: String?
+    let slug: String?
+    let parent_id: Int?
 }
 
 /*

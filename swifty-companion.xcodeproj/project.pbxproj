@@ -17,6 +17,13 @@
 		C7B87BBA2174BB2D0005E719 /* DetailScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B87BB92174BB2D0005E719 /* DetailScreenViewController.swift */; };
 		C7B87BBE2174C6570005E719 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B87BBD2174C6570005E719 /* APIController.swift */; };
 		C7B87BC02174C73D0005E719 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B87BBF2174C73D0005E719 /* API.swift */; };
+		C7BE88B9217711C800FD7651 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BE88B8217711C800FD7651 /* Alerts.swift */; };
+		C7BE88BB2177136700FD7651 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BE88BA2177136700FD7651 /* Messages.swift */; };
+		C7BE88BD21771C5500FD7651 /* APIAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BE88BC21771C5500FD7651 /* APIAuth.swift */; };
+		C7BE88C42177658200FD7651 /* ProjectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BE88C32177658200FD7651 /* ProjectViewCell.swift */; };
+		C7BE88C62177734C00FD7651 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BE88C52177734C00FD7651 /* Colors.swift */; };
+		C7BE88C921777AF800FD7651 /* ProjectValidated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BE88C821777AF800FD7651 /* ProjectValidated.swift */; };
+		C7BE88CB21777D4C00FD7651 /* SkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BE88CA21777D4C00FD7651 /* SkillTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,13 @@
 		C7B87BB92174BB2D0005E719 /* DetailScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenViewController.swift; sourceTree = "<group>"; };
 		C7B87BBD2174C6570005E719 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		C7B87BBF2174C73D0005E719 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		C7BE88B8217711C800FD7651 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		C7BE88BA2177136700FD7651 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		C7BE88BC21771C5500FD7651 /* APIAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAuth.swift; sourceTree = "<group>"; };
+		C7BE88C32177658200FD7651 /* ProjectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewCell.swift; sourceTree = "<group>"; };
+		C7BE88C52177734C00FD7651 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		C7BE88C821777AF800FD7651 /* ProjectValidated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectValidated.swift; sourceTree = "<group>"; };
+		C7BE88CA21777D4C00FD7651 /* SkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				C7851D532175CBA7000B9D4B /* User.swift */,
+				C7BE88BA2177136700FD7651 /* Messages.swift */,
+				C7BE88BC21771C5500FD7651 /* APIAuth.swift */,
+				C7BE88C52177734C00FD7651 /* Colors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -72,6 +89,8 @@
 		C7B87BA42174B4E70005E719 /* swifty-companion */ = {
 			isa = PBXGroup;
 			children = (
+				C7BE88C721777AD700FD7651 /* Enums */,
+				C7BE88C02177652E00FD7651 /* TableCells */,
 				C7851D522175CB17000B9D4B /* Models */,
 				C7B87BBC2174C63F0005E719 /* api */,
 				C7B87BBB2174C6270005E719 /* ViewControllers */,
@@ -90,6 +109,7 @@
 				C7B87BB92174BB2D0005E719 /* DetailScreenViewController.swift */,
 				C7B87BA72174B4E70005E719 /* ViewController.swift */,
 				C7851D552175E28F000B9D4B /* ProfileContainerViewController.swift */,
+				C7BE88B8217711C800FD7651 /* Alerts.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -101,6 +121,23 @@
 				C7B87BBF2174C73D0005E719 /* API.swift */,
 			);
 			path = api;
+			sourceTree = "<group>";
+		};
+		C7BE88C02177652E00FD7651 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				C7BE88C32177658200FD7651 /* ProjectViewCell.swift */,
+				C7BE88CA21777D4C00FD7651 /* SkillTableViewCell.swift */,
+			);
+			path = TableCells;
+			sourceTree = "<group>";
+		};
+		C7BE88C721777AD700FD7651 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				C7BE88C821777AF800FD7651 /* ProjectValidated.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,8 +212,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7851D562175E28F000B9D4B /* ProfileContainerViewController.swift in Sources */,
+				C7BE88CB21777D4C00FD7651 /* SkillTableViewCell.swift in Sources */,
+				C7BE88C62177734C00FD7651 /* Colors.swift in Sources */,
+				C7BE88BB2177136700FD7651 /* Messages.swift in Sources */,
+				C7BE88BD21771C5500FD7651 /* APIAuth.swift in Sources */,
 				C7B87BBE2174C6570005E719 /* APIController.swift in Sources */,
+				C7BE88B9217711C800FD7651 /* Alerts.swift in Sources */,
+				C7BE88C921777AF800FD7651 /* ProjectValidated.swift in Sources */,
 				C7B87BC02174C73D0005E719 /* API.swift in Sources */,
+				C7BE88C42177658200FD7651 /* ProjectViewCell.swift in Sources */,
 				C7851D542175CBA7000B9D4B /* User.swift in Sources */,
 				C7B87BBA2174BB2D0005E719 /* DetailScreenViewController.swift in Sources */,
 				C7B87BA82174B4E70005E719 /* ViewController.swift in Sources */,

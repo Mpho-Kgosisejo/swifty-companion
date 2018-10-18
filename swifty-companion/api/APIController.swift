@@ -13,6 +13,23 @@ class APIController: Any {
     public static var TOKEN: String = ""
     public static let TRY_GET_TOKEN: Int = 5
     private static var static_error: String = ""
+    private static var networkActivities: Int = 0
+    
+    static func setShowNetworkIcon(show: Bool) {
+        if (show){
+            APIController.networkActivities += 1
+        }else{
+            APIController.networkActivities -= 1
+        }
+    }
+    
+    static func showNetworkIcon() {
+        if (APIController.networkActivities > 0){
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }else{
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+    }
     
     private func getCodeRequest() -> NSMutableURLRequest {
         let url: URL = URL(string: "\(API.EndPoint)/oauth/token")!
@@ -45,21 +62,48 @@ class APIController: Any {
             (data, response, error) in
             if let err = error{
                 DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    APIController.setShowNetworkIcon(show: false)
                     errorCallBack(err)
                 }
             }
             else if let d = data{
                 DispatchQueue.main.async {
                     // print("Response: ", response ?? "no-response")
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    APIController.setShowNetworkIcon(show: false)
                     successCallBack(d)
                 }
             }
         }
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        APIController.setShowNetworkIcon(show: true)
         task.resume()
+    }
+    
+    public static func processImage(url: URL, with successCallBack: @escaping (UIImage) -> (), with errorCallBack: @escaping (String) -> ()){
+        var data: Data? = nil
+        
+        self.setShowNetworkIcon(show: true)
+        DispatchQueue.global(qos: .background).async{
+            do {
+                data = try Data(contentsOf: url)
+    
+                if data != nil {
+                    DispatchQueue.main.async {
+                        successCallBack(UIImage(data: data!)!)
+                        APIController.setShowNetworkIcon(show: false)
+                    }
+                    return
+                }
+                APIController.setShowNetworkIcon(show: false)
+                errorCallBack("Something went wrong")
+            } catch let error {
+               
+                DispatchQueue.main.async {
+                    APIController.setShowNetworkIcon(show: false)
+                    errorCallBack(error.localizedDescription)
+                }
+            }
+        }
     }
     
     public static func getDictionary(data: Data) -> NSDictionary {
