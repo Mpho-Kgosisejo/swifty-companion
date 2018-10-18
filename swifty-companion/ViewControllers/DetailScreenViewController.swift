@@ -18,17 +18,19 @@ class DetailScreenViewController: UIViewController, UITableViewDelegate, UITable
         
         self._tblProjects.delegate = self
 
-        self.title = "\(self._userData.login!)'s profile"
+        self.title = "\(self._userData.login ?? "no-login")'s profile"
         
         if let profileContainer: ProfileContainerViewController = self.childViewControllers.last as? ProfileContainerViewController{
-            profileContainer.setFullName(name: self._userData.displayname!)
-            profileContainer.setEmail(email: self._userData.email!)
-            profileContainer.setWallet(wallet: String(self._userData.wallet!))
-            profileContainer.setCorrectionPoints(points: String(self._userData.correction_point!))
-            profileContainer.setImage(imageUrl: self._userData.image_url!)
+            profileContainer.setFullName(name: self._userData.displayname ?? "no-displayname")
+            profileContainer.setEmail(email: self._userData.email ?? "no-email")
+            profileContainer.setWallet(wallet: String(self._userData.wallet ?? 0))
+            profileContainer.setCorrectionPoints(points: String(self._userData.correction_point ?? 0))
+            profileContainer.setImage(imageUrl: self._userData.image_url ?? API.Default42Image)
             profileContainer.setRole(isStaff: self._userData.staff ?? false)
             if let cu = self._userData.cursus_users?.first {
-                profileContainer.setLevel(level: String(format: "%.2f", cu.level!))
+                profileContainer.setLevel(level: String(format: "%.2f", cu.level ?? 0.0))
+            } else {
+                profileContainer.setLevel(level: "0.0")
             }
         }
     }
